@@ -6,6 +6,7 @@ Current Features:
 - voice commands for display and closing the camera (used as a mirror for when you are working out).
 - voice commands for primitive searching on google and youtube.
 - multi-threaded task manager as the user is able to open and close programs with the assistant voice commands.
+- website for users to see and track there workout times
 
 Future planned features:
 - voice commands for advanced searching google and youtube using selenium.
