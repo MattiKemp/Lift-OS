@@ -13,3 +13,6 @@ Future planned features:
 - full integration with spotify so that voice commands can be used to skip, restart, or add songs to the current queue.
 - user accounts that automatically sync app data (spotify/youtube), a user could log in through facial recognition or through a voice command.
 - the ability to open any program on the system with a basic voice command such as: 'please open tetris'
+
+The first commit was written in a little over a week so there is a lot of bad and unused code throughout.
+In further iterations these will be removed and code will be refractored.
