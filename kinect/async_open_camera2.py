@@ -71,7 +71,7 @@ class camera:
             print('flags' + str(self.flags))
             if self.flags[1] != False:
                 rgb = data[:, :, ::-1]
-                self.add_new_user(rgb, self.recognizer)
+                self.add_new_user(data, rgb, self.recognizer)
             else: 
                 if self.face_thread != None and self.face_thread.is_alive():
                     while True:
@@ -96,6 +96,8 @@ class camera:
             self.db_update = 0
             self.faces = set()
         if self.flags[2] == True:
+            data = cv2.flip(data, 1)
+            data = cv2.resize(data, (1900, 1050))
             cv2.imshow('RGB', frame_convert2.video_cv(data))
         if cv2.waitKey(10) == 27:
             self.flags[0] = False
@@ -143,8 +145,18 @@ class camera:
                 faces.add(k)
 
     
-    def add_new_user(self, image, recognizer):
-        if recognizer.detect_and_add(self.flags[1], image) == True:
+    def add_new_user(self, bgr, image, recognizer):
+        
+        gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+        face_locs = self.faceCascade.detectMultiScale(
+                gray,
+                scaleFactor=1.1,
+                minNeighbors=5,
+                minSize=(30,30)
+        )
+        locations = [[y, x+w, y+h, x] for (x,y,w,h) in face_locs]
+        if len(locations) > 0:
+            if(recognizer.detect_and_add(self.flags[1], image, locations)==True):
                 print('user found changing add user flag to false')
                 print('user: ' + str(self.flags[1]))
                 self.flags[1] = False

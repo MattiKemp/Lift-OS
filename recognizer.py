@@ -11,7 +11,7 @@ class Recognizer:
         print('loaded:' + str(len(self.face_names)) + 'user faces:')
         for k in self.face_names:
             print(str(k))
-        #print('temp')
+        print('temp')
         #self.all_face_encodings = {}
     
     def detect_and_add(self, name, image):
@@ -19,6 +19,19 @@ class Recognizer:
         if(len(face_location) > 0):
             print('face detected and being added')
             self.all_face_encodings[name] = face_recognition.face_encodings(image, face_location)[0]
+            self.update()
+            return True
+        return False
+        #self.all_face_encodings[name] = face_recognition.face_encodings(image, location)[0]
+        #self.update()
+    
+    
+    def detect_and_add(self, name, image, location):
+        print('face detected and being added')
+        print(location)
+        unknown_face_encoding = face_recognition.face_encodings(image, location)
+        if(len(unknown_face_encoding) > 0):
+            self.all_face_encodings[name] = unknown_face_encoding[0]
             self.update()
             return True
         return False
@@ -54,15 +67,41 @@ class Recognizer:
         if len(faces) > 0:
             return faces
         return False
+    
+def delete_face(name): 
+    faces = None
+    with open('dataset_faces.dat', 'rb') as f:
+        faces = pickle.load(f)
+    faceIndex = -1
+    for k in faces.keys():
+        if k == name:
+            break
+        faceIndex += 1
+    if faceIndex != len(faces.keys())-2: 
+        print('deleting face')
+        faces = np.delete(faces, faceIndex)
+        with open('dataset_faces.dat', 'wb') as f:
+            pickle.dump(faces, f)
+
+def list_faces(): 
+    faces = None
+    with open('dataset_faces.dat', 'rb') as f:
+        faces = pickle.load(f)
+    face_names = list(faces.keys())
+    print('loaded:' + str(len(face_names)) + 'user faces:')
+    for k in face_names:
+        print(str(k))
+
 def main():
     print('---face recognizer main---')
     print('---initializing obama---')
-    recognizer = Recognizer()
+    #recognizer = Recognizer()
     #obama = face_recognition.load_image_file("./test/obama.jpeg")
     #obama_location = face_recognition.face_locations(obama)
     #obama_encoding = face_recognition.face_encodings(obama, obama_location)
-    #recognizer.add('obama', obama, obama_location)
+    #recognizer.detect_and_add('obama', obama)
     #recognizer.update()
+    #list_faces()
 
 if __name__ == '__main__':
     main()

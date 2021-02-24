@@ -4,7 +4,7 @@ import pyttsx3
 
 def say(text):
     engine = pyttsx3.init()
-    engine.setProperty('rate', 100)
+    engine.setProperty('rate', 200)
     engine.say(text)
     engine.runAndWait()
 
@@ -12,7 +12,7 @@ def say(text):
 
 def test():
     engine = pyttsx3.init()
-    engine.say("I will speak this text")
+    engine.say("Fuck my tight assssss daddy")
     engine.runAndWait()
 
 def main():

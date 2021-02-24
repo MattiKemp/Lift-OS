@@ -19,7 +19,7 @@ def main():
     tp = processing.TextProcessor(flags)
     
     def Speech(textprocessor):
-        time.sleep(100)
+        time.sleep(60)
         while(1):
             print('listening')
             speech = voice.get_audio_reg()
