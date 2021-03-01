@@ -6,7 +6,7 @@ Current Features:
 - voice commands for display and closing the camera (used as a mirror for when you are working out).
 - voice commands for primitive searching on google and youtube.
 - multi-threaded task manager as the user is able to open and close programs with the assistant voice commands.
-- website for users to see and track there workout times
+- website for users to see and track there workout times (see: https://github.com/MattiKemp/Lift-Server)
 
 Future planned features:
 - voice commands for advanced searching google and youtube using selenium.
@@ -17,3 +17,7 @@ Future planned features:
 
 The first commit was written in a little over a week so there is a lot of bad and unused code throughout.
 In further iterations these will be removed and code will be refractored.
+
+Major things to be done:
+- properly organize the project so that it isn't a jumbled mess of files and directories.
+- properly credit the libraries and tutorials used.
