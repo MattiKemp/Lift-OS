@@ -1,7 +1,6 @@
 import pyttsx3
 
 
-
 def say(text):
     engine = pyttsx3.init()
     engine.setProperty('rate', 200)
@@ -12,7 +11,7 @@ def say(text):
 
 def test():
     engine = pyttsx3.init()
-    engine.say("Fuck my tight assssss daddy")
+    engine.say("The bridges burst and twist around")
     engine.runAndWait()
 
 def main():

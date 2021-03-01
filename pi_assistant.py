@@ -5,6 +5,7 @@ import threading
 import kinect
 import time
 
+# starts the assistant
 def main():
     print('----Starting----')
     #print('listening')
@@ -35,6 +36,7 @@ def main():
     camera = kinect.async_open_camera2.camera(flags)
     camera.open_camera()
 
+# run me to start the assistant
 if __name__ == '__main__':
     main()
 
