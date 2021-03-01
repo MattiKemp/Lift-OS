@@ -94,7 +94,9 @@ def open_camera_reg(manager):
     #run_camera([False, False, False])
 
 def close_camera_reg(manager):
-    manager.remove2('camera')
+    #manager.remove2('camera')
+    camera = manager.get_process2('camera')
+    camera.flags[2] = False
 
 def add_user(manager, name):
     camera = manager.get_process2('camera')

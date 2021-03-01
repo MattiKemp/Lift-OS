@@ -36,7 +36,7 @@ class TextProcessor:
             elif tokened[1] == 'close':
                 if tokened[2] == 'camera':
                     print('camera close')
-                    manager.close_camera_reg(self.mainManager)
+                    #manager.close_camera_reg(self.mainManager)
                     self.flags[2] = False
             
             elif tokened[1] == 'add':

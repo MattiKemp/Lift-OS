@@ -2,6 +2,11 @@ import face_recognition
 import pickle
 import numpy as np
 
+import sys,os
+sys.path.append(os.path.realpath('./'))
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, '~/Projects/Lift-OS/')
+
 class Recognizer:
     def __init__(self):
         with open('dataset_faces.dat', 'rb') as f:
@@ -39,7 +44,7 @@ class Recognizer:
         #self.update()
 
     def update(self):
-        with open('dataset_faces.dat', 'wb') as f:
+        with open('~/Projects/Lift-OS/dataset_faces.dat', 'wb') as f:
             pickle.dump(self.all_face_encodings, f)
         self.face_encodings = np.array(list(self.all_face_encodings.values()))
 
@@ -70,7 +75,7 @@ class Recognizer:
     
 def delete_face(name): 
     faces = None
-    with open('dataset_faces.dat', 'rb') as f:
+    with open('~/Projects/Lift-OS/dataset_faces.dat', 'rb') as f:
         faces = pickle.load(f)
     faceIndex = -1
     for k in faces.keys():
@@ -80,12 +85,12 @@ def delete_face(name):
     if faceIndex != len(faces.keys())-2: 
         print('deleting face')
         faces = np.delete(faces, faceIndex)
-        with open('dataset_faces.dat', 'wb') as f:
+        with open('~/Projects/Lift-OS/dataset_faces.dat', 'wb') as f:
             pickle.dump(faces, f)
 
 def list_faces(): 
     faces = None
-    with open('dataset_faces.dat', 'rb') as f:
+    with open('~/Projects/Lift-OS/dataset_faces.dat', 'rb') as f:
         faces = pickle.load(f)
     face_names = list(faces.keys())
     print('loaded:' + str(len(face_names)) + 'user faces:')
