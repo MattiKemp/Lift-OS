@@ -8,6 +8,8 @@ import speech_synth as talk
 # link: https://www.nltk.org/
 
 
+# processes user speech that has been converted to text for voice commands. 
+# A lot of work needs to be done in here.
 class TextProcessor:
     def __init__(self, flags):
         self.mainManager = manager.Manager()

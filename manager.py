@@ -12,6 +12,8 @@ import threading
 
 chrome_path = '/usr/bin/chromium-browser'
 
+# manages the currently running processes.
+# a lot of work needs to be done in here.
 class Manager:
     def __init__(self):
         self.p_manager = process_manager2.PManager()

@@ -10,6 +10,8 @@ import pyttsx3
 #import frame_convert2
 import time
 
+# used for testing
+
 class camera:
     def __init__(self, flags):
         self.flags = flags
