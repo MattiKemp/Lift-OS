@@ -5,10 +5,10 @@ from . import frame_convert2
 from multiprocessing import Process
 import sys
 sys.path.append("..")
-from PiAssistant import recognizer
+import recognizer
 import pyttsx3
 import time
-from PiAssistant import database
+import database
 #import frame_convert2
 import threading
 
@@ -96,9 +96,18 @@ class camera:
             self.db_update = 0
             self.faces = set()
         if self.flags[2] == True:
+            #if cv2.getWindowProperty('RGB',0) < 0:
+              #  cv2.startWindowThread()
+              #  cv2.namedWindow('RGB')
+              #  cv2.moveWindow('RGB', 20, 20)
+              #  cv2.startWindowThread()
             data = cv2.flip(data, 1)
             data = cv2.resize(data, (1900, 1050))
             cv2.imshow('RGB', frame_convert2.video_cv(data))
+        else:
+            data = cv2.resize(data, (1,1))
+            cv2.imshow('RGB', frame_convert2.video_cv(data))
+            #cv2.destroyWindow('RGB')
         if cv2.waitKey(10) == 27:
             self.flags[0] = False
         self.to_scan += 1
@@ -114,7 +123,7 @@ class camera:
     def open_camera(self):
         cv2.startWindowThread()
         cv2.namedWindow('RGB')
-        cv2.moveWindow('RGB', 20, 20)
+        cv2.moveWindow('RGB', 0, 0)
         cv2.startWindowThread()
         #cv2.waitKey(50)
         #time.sleep(10)
@@ -132,7 +141,10 @@ class camera:
         locations = [[y, x+w, y+h, x] for (x,y,w,h) in face_locs]
         results = None
         if len(locations) > 0:
-            results = recognizer.recognize_face_loc(image, locations)
+            try:
+                results = recognizer.recognize_face_loc(image, locations)
+            except:
+                print('exception occured in face_detect for camera')
         #results = recognizer.recognize(image)
         print(results)
         if results and 'obama' in results:

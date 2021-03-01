@@ -5,7 +5,7 @@ from . import frame_convert2
 from multiprocessing import Process
 import sys
 sys.path.append("..")
-from PiAssistant import recognizer
+import recognizer
 import pyttsx3
 #import frame_convert2
 import time
